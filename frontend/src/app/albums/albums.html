@@ -1,0 +1,24 @@
+<section class = "main">
+    <h1>Albums</h1>
+    <div class = "content">
+        <div class = "container">
+            <h1>Songs APP</h1>
+            <div class = "row">
+                <div class = "col-lg-6">
+                    <button class="btn btn-primary" (click)="onGetAlbums()">Show Albums</button>
+
+                    <div *ngFor="let album of albums">
+                        <h3>Album:{{album.title}}</h3>
+                        <h3>Year: {{album.year}}</h3>
+                        <hr>
+                    </div>
+
+
+                </div>
+                <div class = "col-lg-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

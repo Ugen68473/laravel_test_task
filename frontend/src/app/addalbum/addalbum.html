@@ -1,0 +1,38 @@
+<section class = "main">
+
+    <h1>Add new album</h1>
+
+    <div class = "content">
+
+
+ <div class = "row">
+     <div class = "col-lg-6">
+         <div class = "form-group">
+             <label for="title">title</label>
+             <input type = "text" id = "title" name = "title" #title>
+         </div>
+         <div class = "form-group">
+             <label for="year">year</label>
+             <input type = "text" id = "year" name = "year" #year>
+         </div>
+         <button class = "btn btn-primary" type = "submit" (click)="onSubmit(title.value, year.value)">Submit</button>
+         </div>
+
+     <div class = "col-lg-6">
+         <h1>Albums</h1>
+         <button (click)="onGetAlbums()">Get albums</button>
+         <ul>
+             <li *ngFor="let album of albums">{{album.title}}</li>
+         </ul>
+     </div>
+
+ </div>
+
+
+          </div>
+
+
+
+
+
+</section>
