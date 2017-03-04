@@ -13,6 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+
+Route::post('/album',[
+    'uses' => 'AlbumController@postAlbum'
+]);
+
+Route::get('/albums',[
+    'uses' => 'AlbumController@getAlbums'
+]);
+
+Route::put('/album/{id}',[
+    'uses' => 'AlbumController@putAlbum'
+]);
+
+Route::delete('/album/{id}',[
+    'uses' => 'AlbumController@deleteAlbum'
+]);
