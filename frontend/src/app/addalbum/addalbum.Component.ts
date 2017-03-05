@@ -11,26 +11,16 @@ import {AlbumsService} from '../albums.service';
 })
 
 export class addalbumComponent  {
-
-
-
     albums: Album[];
-
-
-    constructor(private albumsService: AlbumsService ){}
+   constructor(private albumsService: AlbumsService ){}
 
       onSubmit(title: string, year: number){
           this.albumsService.addAlbum({title: title, year: year}).subscribe(data => console.log(data));
 
         }
-
-
-
     onGetAlbums(){
         this.albumsService.getAlbums().subscribe(albums => {this.albums = albums;});
     }
-
-
 }
 
 
@@ -38,4 +28,5 @@ interface Album {
     id: number;
     title: string;
     year: number;
+    track:{};
 }

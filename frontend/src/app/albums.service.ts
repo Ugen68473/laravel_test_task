@@ -25,13 +25,6 @@ export class AlbumsService {
 
     }
 
-    getTracks(){
-        return this.http.get('http://localhost/sites/albums/api/tracks',)
-            .map((response: Response) => {return response.json().tracks;});
-
-    }
-
-
 
 
 
