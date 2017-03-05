@@ -27,9 +27,11 @@ interface Album {
     id: number;
     title: string;
     year: number;
+    track:[];
 }
 
 interface Track{
+    track_id:number;
     title: string;
     musician: string;
     title_track: string;
