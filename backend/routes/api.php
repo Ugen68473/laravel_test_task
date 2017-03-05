@@ -20,7 +20,13 @@ Route::post('/album',[
 
 Route::get('/albums',[
     'uses' => 'AlbumController@getAlbums'
+
 ]);
+
+Route::get('/tracks',[
+    'uses' => 'AlbumController@getTracks'
+]);
+
 
 Route::put('/album/{id}',[
     'uses' => 'AlbumController@putAlbum'

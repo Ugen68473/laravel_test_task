@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Album;
+use App\Track;
+use Illuminate\Support\Facades\DB;
+
 
 class AlbumController extends Controller
 {
@@ -15,19 +18,31 @@ class AlbumController extends Controller
         $album->year = $request->input('year');
         $album->save();
         return response()->json(['album' => $album], 201);
+    }
 
+
+    public function getTracks()
+    {
+        //     $tracks = Track::all();
+
+        $query = "SELECT * FROM tracks INNER JOIN albums ON albums.id_album = tracks.id_album";
+        $tracks = DB::select($query);
+        $response = ['tracks' => $tracks];
+        return response()->json($response, 200);
 
     }
 
+
     public function getAlbums()
     {
-        // $albums = Album::all();
-
+        //   $tracks = Track::all();
+        //   $albums = Album::all();
+        //   $albums = Album::with('track')->all();
         $albums = Album::orderBy('created_at', 'desc')->get();
+        $response = ['albums' => $albums];
 
-        $response = [
-            'albums' => $albums
-        ];
+
+
 
         return response()->json($response, 200);
     }
