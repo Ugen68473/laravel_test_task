@@ -8,6 +8,7 @@ use App\Track;
 use Illuminate\Support\Facades\DB;
 
 
+
 class AlbumController extends Controller
 {
     public function postAlbum(Request $request)
@@ -23,10 +24,7 @@ class AlbumController extends Controller
 
     public function getTracks()
     {
-        //     $tracks = Track::all();
-
-        $query = "SELECT * FROM tracks INNER JOIN albums ON albums.id_album = tracks.id_album";
-        $tracks = DB::select($query);
+        $tracks = Track::all();
         $response = ['tracks' => $tracks];
         return response()->json($response, 200);
 
@@ -35,17 +33,14 @@ class AlbumController extends Controller
 
     public function getAlbums()
     {
-        //   $tracks = Track::all();
-        //   $albums = Album::all();
-        //   $albums = Album::with('track')->all();
-        $albums = Album::orderBy('created_at', 'desc')->get();
+
+        $albums = Album::with('track')->get();
         $response = ['albums' => $albums];
-
-
-
-
         return response()->json($response, 200);
     }
+
+
+
 
     public function putAlbum(Request $request, $id)
     {
