@@ -14,14 +14,16 @@ class CreateTracksTable extends Migration
     public function up()
     {
         Schema::create('tracks', function (Blueprint $table) {
-            $table->increments('id_track');
-            $table->integer('id_album');
+            $table->increments('id');
+            $table->integer('track_id')->unsigned();
+            $table->foreign('track_id')->references('id')->on('albums');
             $table->string('musician');
             $table->string('title_track');
             $table->integer('duration');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
