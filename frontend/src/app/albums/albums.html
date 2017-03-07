@@ -3,23 +3,46 @@
     <div class = "content">
         <div class = "container">
             <div class = "row">
-
-                <div class = "col-lg-12">
-                    <div class ="panel panel-default">
-                        <button class="btn btn-primary" (click)="onGetAlbums()">Show Albums</button>
-                        <div *ngFor="let album of albums">
-                            <h4>Album:{{album.title}}</h4>
-                            <h4>Year: {{album.year}}</h4>
-                            <h4>Songs:<div *ngFor="let track of album.track">
-                                <ol>
-                                    <li>Artist: {{track.musician}}</li>
-                                    <li>Title: {{track.title_track}} </li>
-                                    <li>Duration: {{track.duration}}</li>
-                                </ol>
-
-                            </div></h4>
-                            <hr>
-                        </div>
+                <div class = "col-lg-6">
+                    <button class="btn btn-primary" (click)="onGetAlbums()">Show Albums</button>
+                    <div *ngFor="let album of albums"
+                         [class.selected]="album === selectedAlbum"
+                         (click)="onSelect(album)"   >
+                        <a><h4>Album:{{album.title}}</h4></a>
+                        <h4>Year: {{album.year}}</h4>
+                        <h4>Songs:
+                            <ol>
+                                <div *ngFor="let track of album.track">
+                                    <li>
+                                        <ul>
+                                            <li>Artist: {{track.musician}}</li>
+                                            <li>Title: {{track.title_track}} </li>
+                                            <li>Duration: {{track.duration}}</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </ol>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class = "col-lg-6">
+                    <div *ngIf="selectedAlbum">
+                        <h2><strong>Album:</strong>{{selectedAlbum.title}}</h2>
+                        <h1>Year:{{selectedAlbum.year}}</h1>
+                        <h1>Songs:
+                            <ol>
+                                <div *ngFor="let track of selectedAlbum.track">
+                                    <li>
+                                        <ul>
+                                            <li>Artist:{{track.musician}}</li>
+                                            <li>Track:{{track.title_track}}</li>
+                                            <li>Duration:{{track.duration}}</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </ol>
+                        </h1>
                     </div>
                 </div>
             </div>
