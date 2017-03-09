@@ -29,10 +29,9 @@ export class AlbumsService {
         return this.http.put('http://localhost/sites/albums/api/album/' + id, body, {headers: headers})
             .map((response: Response) => response.json()
             );
+   }
 
-
-
-
-
+    deleteAlbum(id: number){
+        return this.http.delete('http://localhost/sites/albums/api/album/' + id);
     }
 }

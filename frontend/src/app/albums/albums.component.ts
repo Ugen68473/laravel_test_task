@@ -32,6 +32,11 @@ export class AlbumsComponent  {
 
     }
 
+    onDelete(){
+        this.albumsService.deleteAlbum(this.selectedAlbum.id).subscribe(() => console.log('Album deleted!!!'));
+    }
+
+
 }
 interface Album {
     id: number;
