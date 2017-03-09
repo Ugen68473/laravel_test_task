@@ -7,7 +7,8 @@
                     <button class="btn btn-primary" (click)="onGetAlbums()">Show Albums</button>
                     <div *ngFor="let album of albums"
                          [class.selected]="album === selectedAlbum"
-                         (click)="onSelect(album)"   >
+                         (click)="onSelect(album)">
+                        <span>ID: {{album.id}}</span>
                         <a><h4>Album:{{album.title}}</h4></a>
                         <h4>Year: {{album.year}}</h4>
                         <h4>Songs:
@@ -28,20 +29,33 @@
                 </div>
                 <div class = "col-lg-6">
                     <div *ngIf="selectedAlbum">
+                        <h2><strong>ID:</strong>{{selectedAlbum.id}}</h2>
                         <h2><strong>Album:</strong>{{selectedAlbum.title}}</h2>
                         <h1>Year:{{selectedAlbum.year}}</h1>
                         <h1>Songs:
-                            <ol>
-                                <div *ngFor="let track of selectedAlbum.track">
-                                    <li>
-                                        <ul>
-                                            <li>Artist:{{track.musician}}</li>
-                                            <li>Track:{{track.title_track}}</li>
-                                            <li>Duration:{{track.duration}}</li>
-                                        </ul>
-                                    </li>
+                            <div class = "panel panel-default">
+                                <ol>
+                                    <div *ngFor="let track of selectedAlbum.track">
+                                        <li>
+                                            <ul>
+                                                <li>Artist:{{track.musician}}</li>
+                                                <li>Track:{{track.title_track}}</li>
+                                                <li>Duration:{{track.duration}}</li>
+                                            </ul>
+                                        </li>
+                                    </div>
+                                </ol>
+                            </div>
+                            <div class = "panel panel-default">
+                                <div class="input-group">
+                                    Update Album title:<input type ="text" [(ngModel)]="newTitle">
                                 </div>
-                            </ol>
+                                <div class="input-group">
+                                    Update Album year:<input type ="text" [(ngModel)]="newYear">
+                                </div>
+                                <button (click)="onUpdate()">Update</button>
+
+                            </div>
                         </h1>
                     </div>
                 </div>

@@ -3,8 +3,6 @@ import {Http, Response, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
-
-
 @Injectable()
 export class AlbumsService {
     constructor(private http: Http) {
@@ -25,7 +23,16 @@ export class AlbumsService {
 
     }
 
+    updateAlbum(id: number, newTitle: string, newYear: number) {
+        const body = JSON.stringify({title: newTitle, year: newYear});
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.put('http://localhost/sites/albums/api/album/' + id, body, {headers: headers})
+            .map((response: Response) => response.json()
+            );
 
 
 
+
+
+    }
 }

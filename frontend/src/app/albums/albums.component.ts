@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {AlbumsService} from '../albums.service';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
     templateUrl: './app/albums/albums.html',
@@ -8,19 +8,31 @@ import {AlbumsService} from '../albums.service';
 })
 export class AlbumsComponent  {
 
+
+    album: Album;
     albums: Album;
     selectedAlbum: Album;
-
+    newTitle: any;
+    newYear: any;
 
     constructor(private albumsService: AlbumsService ){}
+
     onGetAlbums(){
         this.albumsService.getAlbums().subscribe(albums => {this.albums = albums;});
     }
     onSelect(album: Album): void {
         this.selectedAlbum = album;
     }
-}
+    onUpdate(){
 
+        //      console.log(this.selectedAlbum.id);
+        //      console.log(this.newTitle)
+        this.albumsService.updateAlbum(this.selectedAlbum.id, this.newTitle, this.newYear )
+            .subscribe((album:Album) => {this.album = album});
+
+    }
+
+}
 interface Album {
     id: number;
     title: string;

@@ -49,10 +49,9 @@ class AlbumController extends Controller
         if(!$album){
             return response()->json(['message' => 'The album is not found'], 404);
         }
-
-        $album->content = $request->input('content');
+        $album->title = $request->input('title');
+        $album->year = $request->input('year');
         $album->save();
-
         return response()->json(['album' => $album], 200);
 
     }
